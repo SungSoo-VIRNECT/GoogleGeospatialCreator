@@ -39,6 +39,11 @@ public class GPSManager : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     private void OnApplicationPause(bool pauseStatus)
     {
         if (pauseStatus)
