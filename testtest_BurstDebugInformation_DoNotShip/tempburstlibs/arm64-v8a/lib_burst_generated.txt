@@ -9,6 +9,7 @@ Library: C:\Users\VIRNECT\Desktop\GoogleGeospatialCreator\Temp\BurstOutput\tempb
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=CesiumRuntime;
 --assembly-defines=Google.XR.ARCoreExtensions;
+--assembly-defines=Google.XR.ARCoreExtensions.GeospatialCreator;
 --assembly-defines=Mono.Security;
 --assembly-defines=mscorlib;
 --assembly-defines=QFSW.QC.Demo;
@@ -30,7 +31,9 @@ Library: C:\Users\VIRNECT\Desktop\GoogleGeospatialCreator\Temp\BurstOutput\tempb
 --assembly-defines=Unity.RenderPipeline.Universal.ShaderLibrary;
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.RenderPipelines.Universal.Runtime;
+--assembly-defines=Unity.Splines;
 --assembly-defines=Unity.TextMeshPro;
+--assembly-defines=Unity.Timeline;
 --assembly-defines=Unity.XR.ARCore;
 --assembly-defines=Unity.XR.ARFoundation;
 --assembly-defines=Unity.XR.ARFoundation.InternalUtils;
@@ -59,6 +62,7 @@ Library: C:\Users\VIRNECT\Desktop\GoogleGeospatialCreator\Temp\BurstOutput\tempb
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=CesiumRuntime;
 --assembly-defines=Google.XR.ARCoreExtensions;
+--assembly-defines=Google.XR.ARCoreExtensions.GeospatialCreator;
 --assembly-defines=Mono.Security;
 --assembly-defines=mscorlib;
 --assembly-defines=QFSW.QC.Demo;
@@ -80,7 +84,9 @@ Library: C:\Users\VIRNECT\Desktop\GoogleGeospatialCreator\Temp\BurstOutput\tempb
 --assembly-defines=Unity.RenderPipeline.Universal.ShaderLibrary;
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.RenderPipelines.Universal.Runtime;
+--assembly-defines=Unity.Splines;
 --assembly-defines=Unity.TextMeshPro;
+--assembly-defines=Unity.Timeline;
 --assembly-defines=Unity.XR.ARCore;
 --assembly-defines=Unity.XR.ARFoundation;
 --assembly-defines=Unity.XR.ARFoundation.InternalUtils;
