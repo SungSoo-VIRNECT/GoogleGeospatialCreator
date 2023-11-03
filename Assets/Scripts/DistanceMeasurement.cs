@@ -14,6 +14,7 @@ public class DistanceMeasurement : MonoBehaviour
     public Transform targetObject; // The object you want to measure the distance to.
     public TextMeshProUGUI distanceText;
     public ARGeospatialCreatorAnchor arGeospatialCreatorAnchor;
+    public static double distance;
     private double lat;
     private double lon;
     private double deviceLat;
@@ -24,20 +25,35 @@ public class DistanceMeasurement : MonoBehaviour
         InvokeRepeating("GetLocationData", 0, 5);
     }
 
+
     public void GetLocationData()
     {
-            lat = arGeospatialCreatorAnchor.Latitude;
-            lon = arGeospatialCreatorAnchor.Longitude;
-            Debug.Log("구조 위치" + lat + " " + lon);
-            deviceLat = EarthManager.CameraGeospatialPose.Latitude;
-            deviceLon = EarthManager.CameraGeospatialPose.Longitude;
-            Debug.Log($"나의 위치 {deviceLat} {deviceLon}");
+        lat = arGeospatialCreatorAnchor.Latitude;
+        lon = arGeospatialCreatorAnchor.Longitude;
+        Debug.Log("구조 위치" + lat + " " + lon);
+        deviceLat = EarthManager.CameraGeospatialPose.Latitude;
+        deviceLon = EarthManager.CameraGeospatialPose.Longitude;
+        Debug.Log($"나의 위치 {deviceLat} {deviceLon}");
 
-            double distance = CalculateDistance(lat, lon, deviceLat, deviceLon);
+        distance = CalculateDistance(lat, lon, deviceLat, deviceLon);
+        Debug.Log("distance " +distance);
 
-            Debug.Log("Distance to target object: " + distance + " meters");
-            distanceText.text = ((int)distance).ToString() + " 남음";
+        float trimmedValue = (float)Math.Round(distance, 1); 
+        if (trimmedValue >= 1)
+        {
+            // Display distance in kilometers
+            double distanceInKilometers = trimmedValue;
+            distanceText.text = distanceInKilometers.ToString("0.0") + "KM 남음";
+        }
+        else
+        {
+            // Display distance in meters
+            trimmedValue = (int)(distance * 1000);
+            distanceText.text = (trimmedValue).ToString() + "M 남음";
+        }
+        Debug.Log("Distance to target object: " + distance);
     }
+
 
     public static double CalculateDistance(double lat1, double lon1, double lat2, double lon2)
     {
@@ -46,7 +62,6 @@ public class DistanceMeasurement : MonoBehaviour
         double distanceInKilometers = 12745.6 * Math.Asin(Math.Sqrt(havf(lat2 - lat1) + Math.Cos(rad(lat1)) * Math.Cos(rad(lat2)) * havf(lon2 - lon1)));
         int distanceInMeters = (int)(distanceInKilometers * 1000);
         Debug.Log(distanceInKilometers + " " + distanceInMeters);
-        return distanceInMeters;
+        return distanceInKilometers;
     }
-
 }
