@@ -14,7 +14,8 @@ public class DistanceMeasurement : MonoBehaviour
     public Transform targetObject; // The object you want to measure the distance to.
     public TextMeshProUGUI distanceText;
     public ARGeospatialCreatorAnchor arGeospatialCreatorAnchor;
-    public static double distance;
+    public GameObject infoImage;
+    public static double distanceKilometers;
     private double lat;
     private double lon;
     private double deviceLat;
@@ -35,10 +36,10 @@ public class DistanceMeasurement : MonoBehaviour
         deviceLon = EarthManager.CameraGeospatialPose.Longitude;
         Debug.Log($"나의 위치 {deviceLat} {deviceLon}");
 
-        distance = CalculateDistance(lat, lon, deviceLat, deviceLon);
-        Debug.Log("distance " +distance);
+        distanceKilometers = CalculateDistance(lat, lon, deviceLat, deviceLon);
+        Debug.Log("distance " +distanceKilometers);
 
-        float trimmedValue = (float)Math.Round(distance, 1); 
+        float trimmedValue = (float)Math.Round(distanceKilometers, 1); 
         if (trimmedValue >= 1)
         {
             // Display distance in kilometers
@@ -48,10 +49,15 @@ public class DistanceMeasurement : MonoBehaviour
         else
         {
             // Display distance in meters
-            trimmedValue = (int)(distance * 1000);
+            trimmedValue = (int)(distanceKilometers * 1000);
             distanceText.text = (trimmedValue).ToString() + "M 남음";
         }
-        Debug.Log("Distance to target object: " + distance);
+        Debug.Log("Distance to target object: " + distanceKilometers);
+
+        if(distanceKilometers * 1000 <= 10)
+        {
+            infoImage.SetActive(true);
+        }
     }
 
 

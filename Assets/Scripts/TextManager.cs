@@ -46,6 +46,7 @@ public class TextManager : MonoBehaviour
                 _isLocalizing = true;
                 //스피너 + 경로탐색중 오브젝트 켜기
                 //디폴트
+                spinnerText.SetActive(true);
             }
 
 
@@ -58,6 +59,7 @@ public class TextManager : MonoBehaviour
             _isLocalizing = false;
             spinnerText.SetActive(false);
             timeLeftText.SetActive(true);
+            CalculateRemainingTime();
             //소요시간 넣기
         }
 
@@ -70,7 +72,7 @@ public class TextManager : MonoBehaviour
         double walkingSpeedKmph = 5.0;
 
         // Get the remaining distance (in meters)
-        double remainingDistanceKilometers = DistanceMeasurement.distance;
+        double remainingDistanceKilometers = DistanceMeasurement.distanceKilometers;
 
         // Calculate the time in hours
         double timeHours = remainingDistanceKilometers / (walkingSpeedKmph);
