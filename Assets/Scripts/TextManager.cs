@@ -27,6 +27,7 @@ public class TextManager : MonoBehaviour
     private void OnEnable()
     {
         _isLocalizing = true;
+        timeLeftText.SetActive(false);
     }
 
     void Update()
@@ -47,6 +48,7 @@ public class TextManager : MonoBehaviour
                 //스피너 + 경로탐색중 오브젝트 켜기
                 //디폴트
                 spinnerText.SetActive(true);
+                timeLeftText.SetActive(false);
             }
 
 
