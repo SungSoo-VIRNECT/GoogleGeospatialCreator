@@ -27,6 +27,8 @@ public class TextManager : MonoBehaviour
     private void OnEnable()
     {
         _isLocalizing = true;
+        timeLeftText.SetActive(false);
+
     }
 
     void Update()
@@ -47,6 +49,8 @@ public class TextManager : MonoBehaviour
                 //스피너 + 경로탐색중 오브젝트 켜기
                 //디폴트
                 spinnerText.SetActive(true);
+                timeLeftText.SetActive(false);
+
             }
 
 
@@ -59,17 +63,17 @@ public class TextManager : MonoBehaviour
             _isLocalizing = false;
             spinnerText.SetActive(false);
             timeLeftText.SetActive(true);
-            CalculateRemainingTime();
+            
             //소요시간 넣기
         }
 
-        
+        CalculateRemainingTime();
     }
 
     public void CalculateRemainingTime()
     {
         // Assume walking speed is 5 kilometers per hour
-        double walkingSpeedKmph = 5.0;
+        double walkingSpeedKmph = 4.0;
 
         // Get the remaining distance (in meters)
         double remainingDistanceKilometers = DistanceMeasurement.distanceKilometers;
@@ -82,11 +86,18 @@ public class TextManager : MonoBehaviour
         int minutes = (int)((timeHours - hours) * 60);
 
         // Format the time as a string
-        string timeString = string.Format("{0} hours {1} minutes", hours, minutes);
 
-        // Update the UI element with the remaining time
-        timeLeftText.GetComponent<TextMeshProUGUI>().text = timeString;
-
-        Debug.Log(timeString);
+        if (hours == 0 && minutes < 2)
+        {
+            timeLeftText.GetComponent<TextMeshProUGUI>().text = "곧 도착 예상";
+        }
+        else if(hours == 0)
+        {
+            timeLeftText.GetComponent<TextMeshProUGUI>().text = string.Format("{0} 분", minutes);
+        }
+        else
+        {
+            timeLeftText.GetComponent<TextMeshProUGUI>().text = string.Format("{0} 시 {1} 분", hours, minutes);
+        }
     }
 }
