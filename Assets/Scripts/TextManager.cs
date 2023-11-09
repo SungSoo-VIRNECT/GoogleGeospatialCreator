@@ -23,10 +23,14 @@ public class TextManager : MonoBehaviour
     private bool _isLocalizing = false;
     [SerializeField] private GameObject spinnerText;
     [SerializeField] private GameObject timeLeftText;
+    [SerializeField] private GameObject navigationArrow;
 
     private void OnEnable()
     {
         _isLocalizing = true;
+        timeLeftText.SetActive(false);
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
     }
 
     void Update()
@@ -47,6 +51,8 @@ public class TextManager : MonoBehaviour
                 //스피너 + 경로탐색중 오브젝트 켜기
                 //디폴트
                 spinnerText.SetActive(true);
+                timeLeftText.SetActive(false);
+                navigationArrow.SetActive(false);
             }
 
 
@@ -56,20 +62,22 @@ public class TextManager : MonoBehaviour
         else if (_isLocalizing)
         {
             // Finished localization.
+            
             _isLocalizing = false;
             spinnerText.SetActive(false);
-            timeLeftText.SetActive(true);
-            CalculateRemainingTime();
-            //소요시간 넣기
+            timeLeftText.SetActive(true); //소요시간
+            navigationArrow.SetActive(true); 
+
+
         }
 
-        
+        CalculateRemainingTime();
     }
 
     public void CalculateRemainingTime()
     {
         // Assume walking speed is 5 kilometers per hour
-        double walkingSpeedKmph = 5.0;
+        double walkingSpeedKmph = 4.0;
 
         // Get the remaining distance (in meters)
         double remainingDistanceKilometers = DistanceMeasurement.distanceKilometers;
@@ -82,11 +90,18 @@ public class TextManager : MonoBehaviour
         int minutes = (int)((timeHours - hours) * 60);
 
         // Format the time as a string
-        string timeString = string.Format("{0} hours {1} minutes", hours, minutes);
 
-        // Update the UI element with the remaining time
-        timeLeftText.GetComponent<TextMeshProUGUI>().text = timeString;
-
-        Debug.Log(timeString);
+        if (hours == 0 && minutes < 2)
+        {
+            timeLeftText.GetComponent<TextMeshProUGUI>().text = "곧 도착 예상";
+        }
+        else if(hours == 0)
+        {
+            timeLeftText.GetComponent<TextMeshProUGUI>().text = string.Format("{0}분 소요예상", minutes);
+        }
+        else
+        {
+            timeLeftText.GetComponent<TextMeshProUGUI>().text = string.Format("{0}시간 {1}분 소요예상", hours, minutes);
+        }
     }
 }

@@ -23,7 +23,7 @@ public class DistanceMeasurement : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("GetLocationData", 0, 5);
+        InvokeRepeating("GetLocationData", 3, 5);
     }
 
 
