@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Backup.unity
-    guid: 77e691d4fa44c604f86fb41bb9679ca8
+    path: Assets/Scenes/Paju.unity
+    guid: 6a03f843e48ed39489af9d971ea7932c
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: b275c3be23d58354a859d0e4add36509, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 2bb5eeaea3e45bb4dbb0d3af282ebe17, type: 2}
